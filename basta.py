@@ -76,7 +76,7 @@ class Menu:
     total_price = 0
     # Purchased items being the array (['pancakes', 'home fries', 'coffee']).
     # item being pancakes.
-    # self.items resembling @items in Ruby which is a hash.
+    # self.items resembling @items, an instance variable in Ruby. In this case @items is a hash. Etc.) @items = {}
     # self.items[item] resembling @items[pancakes].
     for item in purchased_items:
       if item in self.items:
