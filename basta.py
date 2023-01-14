@@ -72,6 +72,17 @@ class Menu:
   def __repr__(self):
     return "{name} menu available from {start_time} to {end_time}".format(name = self.name, start_time = self.start_time, end_time = self.end_time)
 
+  def calculate_bill(self, purchased_items):
+    total_price = 0
+    # Purchased items being the array (['pancakes', 'home fries', 'coffee']).
+    # item being pancakes.
+    # self.items resembling @items in Ruby which is a hash.
+    # self.items[item] resembling @items[pancakes].
+    for item in purchased_items:
+      if item in self.items:
+        total_price += self.items[item]
+    return total_price
+
 # Menu Variables:
 brunch_menu = Menu('Brunch', brunch_items, 11, 16)
 
@@ -81,9 +92,16 @@ dinner_menu = Menu('Dinner', dinner_items, 17, 23)
 
 kids_menu = Menu('Kids', kids_items, 11, 21)
 
+first_order = ['pancakes', 'home fries', 'coffee']
+second_order = ['salumeria plate', 'vegan mushroom ravioli']
+
 # Code testing:
 print(brunch_menu)
 print(early_bird_menu)
 print(dinner_menu)
 print(kids_menu)
+print("")
+ 
+print(brunch_menu.calculate_bill(first_order))
+print(early_bird_menu.calculate_bill(second_order))
 print("")
