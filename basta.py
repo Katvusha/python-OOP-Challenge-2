@@ -60,3 +60,30 @@ kids_items = {
   }
 
 # Start writing your code below -------------------------------------------------------
+
+class Menu:
+
+  def __init__(self,name,items,start_time,end_time):
+    self.name = name
+    self.items = items
+    self.start_time = start_time
+    self.end_time = end_time
+
+  def __repr__(self):
+    return "{name} menu available from {start_time} to {end_time}".format(name = self.name, start_time = self.start_time, end_time = self.end_time)
+
+# Menu Variables:
+brunch_menu = Menu('Brunch', brunch_items, 11, 16)
+
+early_bird_menu = Menu('Early Bird', early_bird_items, 15, 18)
+
+dinner_menu = Menu('Dinner', dinner_items, 17, 23)
+
+kids_menu = Menu('Kids', kids_items, 11, 21)
+
+# Code testing:
+print(brunch_menu)
+print(early_bird_menu)
+print(dinner_menu)
+print(kids_menu)
+print("")
