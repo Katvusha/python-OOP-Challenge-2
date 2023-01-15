@@ -34,6 +34,8 @@
 
 # 17.) Create a new business called "Take a' Arepa". Repeat the process as required.
 
+# -------------------------------------------------------------------------------------
+
 brunch_items = {
   'pancakes': 7.50, 'waffles': 9.00, 'burger': 11.00, 
   'home fries': 4.50, 'coffee': 1.50, 'espresso': 3.00, 
@@ -83,6 +85,8 @@ class Menu:
         total_price += self.items[item]
     return total_price
 
+# -------------------------------------------------------------------------------------
+
 class Franchise:
   def __init__(self,address,menus):
     self.address = address
@@ -98,7 +102,19 @@ class Franchise:
         available_menu.append(menu)
     return available_menu
 
-# Menu & Franchise Variables:
+# -------------------------------------------------------------------------------------
+
+class Business:
+  def __init__(self,name,franchises):
+    self.name = name
+    self.franchises = franchises
+
+  def __repr__(self):
+    return "{} is the business name.".format(self.name)
+
+# -------------------------------------------------------------------------------------
+
+# Menu Variables:
 
 brunch_menu = Menu('Brunch', brunch_items, 11, 16)
 
@@ -108,23 +124,54 @@ dinner_menu = Menu('Dinner', dinner_items, 17, 23)
 
 kids_menu = Menu('Kids', kids_items, 11, 21)
 
-menus = [brunch_menu, early_bird_menu, dinner_menu , kids_menu]
+menu_list = [brunch_menu, early_bird_menu, dinner_menu , kids_menu]
 
-flagship_store = Franchise("1232 West End Road", menus)
+# -------------------------------------------------------------------------------------
 
-new_installment = Franchise("12 East Mulberry Street", menus)
+# Franchise Variables:
 
+flagship_store = Franchise("1232 West End Road", menu_list)
 
-first_order = ['pancakes', 'home fries', 'coffee']
-second_order = ['salumeria plate', 'vegan mushroom ravioli']
+new_installment = Franchise("12 East Mulberry Street", menu_list)
 
+franchise_list = [flagship_store, new_installment]
+
+# -------------------------------------------------------------------------------------
+
+# Business Variables:
+
+first_business = Business("Basta Fazoolin' with my Heart", franchise_list)
+
+# -------------------------------------------------------------------------------------
+
+# For Question 15 onwards:
+
+arepas_items = {
+  'arepa pabellon': 7.00, 'pernil arepa': 8.50, 'guayanes arepa': 8.00, 'jamon arepa': 7.50 
+  }
+
+arepas_menu = Menu('Arepas', arepas_items, 10, 20)
+
+arepas_menu_list = [arepas_menu]
+
+arepas_place = Franchise("189 Fitzgerald Avenue", arepas_menu_list)
+
+arepas_franchise_list = [arepas_place]
+
+second_business = Business("Take a' Arepa", arepas_franchise_list)
+
+# -------------------------------------------------------------------------------------
 
 # Code testing:
+
 print(brunch_menu)
 print(early_bird_menu)
 print(dinner_menu)
 print(kids_menu)
 print("")
+
+first_order = ['pancakes', 'home fries', 'coffee']
+second_order = ['salumeria plate', 'vegan mushroom ravioli']
  
 print(brunch_menu.calculate_bill(first_order))
 print(early_bird_menu.calculate_bill(second_order))
@@ -135,4 +182,13 @@ print("")
 
 print(flagship_store.available_menus(12))
 print(flagship_store.available_menus(17))
+print("")
+
+print(first_business)
+print("")
+
+print(arepas_place)
+print("")
+
+print(second_business)
 print("")
