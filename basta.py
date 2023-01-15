@@ -61,6 +61,33 @@ kids_items = {
 
 # Start writing your code below -------------------------------------------------------
 
+brunch_items = {
+  'pancakes': 7.50, 'waffles': 9.00, 'burger': 11.00, 
+  'home fries': 4.50, 'coffee': 1.50, 'espresso': 3.00, 
+  'tea': 1.00, 'mimosa': 10.50, 'orange juice': 3.50
+  }
+
+early_bird_items = {
+  'salumeria plate': 8.00, 
+  'salad and breadsticks (serves 2, no refills)': 14.00, 
+  'pizza with quattro formaggi': 9.00, 'duck ragu': 17.50, 
+  'mushroom ravioli (vegan)': 13.50, 'coffee': 1.50, 
+  'espresso': 3.00
+  }
+
+dinner_items = {
+  'crostini with eggplant caponata': 13.00, 'caesar salad': 16.0,
+  'pizza with quattro formaggi': 11.00, 'duck ragu': 19.50, 
+  'mushroom ravioli (vegan)': 13.50, 'coffee': 2.00, 'espresso': 3.00
+  }
+
+kids_items = {
+  'chicken nuggets': 6.50, 'fusilli with wild mushrooms': 12.00, 
+  'apple juice': 3.00
+  }
+
+# Start writing your code below -------------------------------------------------------
+
 class Menu:
 
   def __init__(self,name,items,start_time,end_time):
@@ -76,14 +103,30 @@ class Menu:
     total_price = 0
     # Purchased items being the array (['pancakes', 'home fries', 'coffee']).
     # item being pancakes.
-    # self.items resembling @items, an instance variable in Ruby. In this case @items is a hash. Etc.) @items = {}
+    # self.items resembling @items in Ruby which is a hash.
     # self.items[item] resembling @items[pancakes].
     for item in purchased_items:
       if item in self.items:
         total_price += self.items[item]
     return total_price
 
-# Menu Variables:
+class Franchise:
+  def __init__(self,address,menus):
+    self.address = address
+    self.menus = menus
+  
+  def __repr__(self):
+    return "{} is this franchise's address.".format(self.address)
+  
+  def available_menus(self,time):
+    available_menu = []
+    for menu in self.menus:
+      if time >= menu.start_time and time <= menu.end_time:
+        available_menu.append(menu)
+    return available_menu
+
+# Menu & Franchise Variables:
+
 brunch_menu = Menu('Brunch', brunch_items, 11, 16)
 
 early_bird_menu = Menu('Early Bird', early_bird_items, 15, 18)
@@ -92,8 +135,16 @@ dinner_menu = Menu('Dinner', dinner_items, 17, 23)
 
 kids_menu = Menu('Kids', kids_items, 11, 21)
 
+menus = [brunch_menu, early_bird_menu, dinner_menu , kids_menu]
+
+flagship_store = Franchise("1232 West End Road", menus)
+
+new_installment = Franchise("12 East Mulberry Street", menus)
+
+
 first_order = ['pancakes', 'home fries', 'coffee']
 second_order = ['salumeria plate', 'vegan mushroom ravioli']
+
 
 # Code testing:
 print(brunch_menu)
@@ -104,4 +155,11 @@ print("")
  
 print(brunch_menu.calculate_bill(first_order))
 print(early_bird_menu.calculate_bill(second_order))
+print("")
+
+print(flagship_store)
+print("")
+
+print(flagship_store.available_menus(12))
+print(flagship_store.available_menus(17))
 print("")
